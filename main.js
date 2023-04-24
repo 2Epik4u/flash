@@ -36,25 +36,6 @@ switch (process.platform) {
 app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName));
 app.commandLine.appendSwitch("disable-http-cache");
 
-// discord rpc
-const rpc = new RPC.Client({
-  transport: "ipc"
-});
-
- rpc.on("ready", () => {
-  rpc.setActivity({
-    details: "Wrapper: Online - Developer Build",
-    state: 'Testing',
-    startTimestamp: new Date(),
-    largeImageKey: "icon",
-    largeImageText: "Wrapper: Online - Developer",
-    smallImageKey: "Wrapper: Online - Developer",
-    smallImagetext: "Wrapper: Online - Developer",
-  });
-});
-rpc.login({
-  clientId: "848923315044745237"
-});
 
 function createWindow () {
   // Create the browser window.
@@ -67,11 +48,8 @@ function createWindow () {
       plugins: true //this is for flash
     }
   })
-  // change this to wrapper.online when development is done and website is ready
    mainWindow.loadURL(config.website)
 
-  // Remove menubar because stinky
-   mainWindow.setMenuBarVisibility(false)
 
 }
 
@@ -94,3 +72,4 @@ app.whenReady().then(() => {
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
+
