@@ -9,7 +9,7 @@
   "repository": "https://github.com/2Epik4u/flash",
   "author": "2Epik4u",
   "devDependencies": {
-    "electron": "^11.4.7",
+    "electron": "^11.5.0",
     "discord-rpc": "3.2.0"
   },
   "dependencies": {
