@@ -62,6 +62,29 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+  globalShortcut.register("CommandOrControl+Shift+I", () => {
+	const window = BrowserWindow.fromId(+process.env.MAIN_WINDOW_ID);
+	if (window.webContents.isDevToolsOpened()) {
+		window.webContents.closeDevTools();
+	} else {
+		window.webContents.openDevTools();
+	}
+});
+globalShortcut.register("CommandOrControl+-", () => {
+	const window = BrowserWindow.fromId(+process.env.MAIN_WINDOW_ID);
+	const zoom = window.webContents.getZoomFactor();
+	if (zoom - 0.2 > 0.1) {
+		window.webContents.setZoomFactor(zoom - 0.2);
+	}
+});
+globalShortcut.register("CommandOrControl+=", () => {
+	const window = BrowserWindow.fromId(+process.env.MAIN_WINDOW_ID);
+	const zoom = window.webContents.getZoomFactor();
+	window.webContents.setZoomFactor(zoom + 0.2);
+});
+globalShortcut.register("CommandOrControl+q", () => {
+	app.quit()
+});
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
